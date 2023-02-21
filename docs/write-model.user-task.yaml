@@ -1,0 +1,5 @@
+actions:
+  create:
+    name: Create train
+    schema:
+      $ref: "data-dictionary/models/train.yml"

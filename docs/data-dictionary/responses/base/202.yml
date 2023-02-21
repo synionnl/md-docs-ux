@@ -1,0 +1,7 @@
+description: Accepted
+headers:
+  location:
+    schema:
+      type: string
+      format: uri      
+    description: The location of the status resource for this asynchronous request.

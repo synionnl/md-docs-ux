@@ -1,0 +1,4 @@
+allOf:
+  - title: create train command
+  - $ref: "base/command.yml"
+  - $ref: "../models/train.yml"

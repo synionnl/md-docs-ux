@@ -1,0 +1,4 @@
+allOf:
+  - title: train response
+  - $ref: "base/response.yml"
+  - $ref: "../models/train.yml"

@@ -1,0 +1,9 @@
+in: path
+name: train_id
+description: A unique identifier for a train.
+required: true
+schema:
+  type: string
+  format: uuid
+  description: A unique identifier for a train.
+  example: 077015cc-5b84-494d-88b4-ee64773d4692

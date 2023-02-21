@@ -1,0 +1,5 @@
+properties:
+  messages:
+    type: array
+    items:
+      $ref: "message.yml"

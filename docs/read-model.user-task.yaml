@@ -1,0 +1,4 @@
+user-task:
+  name: Train
+  schema:
+    $ref: "data-dictionary/models/train.yml"  

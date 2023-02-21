@@ -1,0 +1,92 @@
+openapi: 3.0.3
+info:
+  version: 0.0.1
+  title: UX design
+  description: |
+
+servers:
+  - url: http://localhost:9000/
+
+paths:
+
+  /trains:
+    get:
+      tags:
+        - trains
+      summary: Gets a list of trains.
+      description: |
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+        
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+        
+        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      operationId: GetTrains
+      parameters:
+        - $ref: "./data-dictionary/parameters/query/limit.yml"
+        - $ref: "./data-dictionary/parameters/query/offset.yml"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "./data-dictionary/responses/trains.yml"
+        "401":
+          $ref: "./data-dictionary/responses/base/401.yml"
+        "403":
+          $ref: "./data-dictionary/responses/base/403.yml"
+
+  /trains/{train_id}:
+    parameters:
+      - $ref: "./data-dictionary/parameters/path/train_id.yml"
+    post:
+      tags:
+        - trains
+      summary: Creates a train.
+      description: |
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+        
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+        
+        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      operationId: CreateTrain
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./data-dictionary/commands/create_train.yml"
+      responses:
+        "204":
+          $ref: "./data-dictionary/responses/base/204.yml"
+        "401":
+          $ref: "./data-dictionary/responses/base/401.yml"
+        "403":
+          $ref: "./data-dictionary/responses/base/403.yml"
+    get:
+      tags:
+        - trains
+      summary: Gets a single train.
+      description: |
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+        
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+        
+        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      operationId: GetTrain
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "./data-dictionary/responses/train.yml"
+        "401":
+          $ref: "./data-dictionary/responses/base/401.yml"
+        "403":
+          $ref: "./data-dictionary/responses/base/403.yml"
+        "404":
+          $ref: "./data-dictionary/responses/base/404.yml"
