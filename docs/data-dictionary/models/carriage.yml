@@ -1,0 +1,107 @@
+carriage:
+  required:
+    - object_type
+    - carriage_id
+    - name
+    - type
+    - registration_date
+  properties:
+    object_type:
+      title: object type
+      description: Object type is used the distinguish between different types of carriages.
+      type: string
+    carriage_id:
+      type: integer
+      minimum: 0
+      description: A unique id identifing the carriage.
+      example: 8765
+    type:
+      required:
+        - type_id
+        - manufacturer
+        - name
+      properties:
+        type_id:
+          type: string
+          format: uuid
+          description:  A unique id identifing the carriage type.
+          example: 6a88f3f2-7377-4bca-b5ad-62a2c634320b
+        manufacturer:
+          type: string
+          description: The name of the manufacturing company.
+          example: United Wagon Europe GmbH
+        name:
+          type: string
+          description: The name of the carriage type.
+          example: 19-9549
+    registration_date:
+      type: string
+      format: date
+      description: The registration date of the carriage.
+      example: "1981-01-05"
+      
+passenger_carriage:
+  allOf:
+    - $ref: "#/carriage"
+    - title: passenger carriage
+      description: A passenger railroad car or passenger car (American English), also called a passenger carriage, passenger coach (British English and International Union of Railways), or passenger bogie (Indian English)[1] is a railroad car that is designed to carry passengers. The term passenger car can also be associated with a sleeping car, a baggage car, a dining car, railway post office and prisoner transport cars.
+      properties:
+        capacity:
+          title: capacity
+          properties:
+            seated:
+              title: seated
+              type: integer
+              minimum: 0
+            standing:
+              title: standing
+              type: integer
+              minimum: 0
+
+container_freight_carriage:
+  allOf:
+    - $ref: "#/carriage"
+    - title: container freight carriage
+      properties:
+        capacity:
+          title: capacity
+          description: The number of container which can be loaded onto the carriage.
+          type: integer
+          minimum: 0
+          example: 2
+
+liquid_freight_carriage:
+  allOf:
+    - $ref: "#/carriage"
+    - title: liquid freight carriage
+      properties:
+        capacity:
+          title: capacity
+          description: The number liters which can be loaded onto the carriage.
+          type: integer
+          minimum: 0
+          example: 4000
+          
+autorack_carriage:
+  allOf:
+    - $ref: "#/carriage"
+    - title: autorack carriage
+      properties:
+        capacity:
+          title: capacity
+          description: The number of cars which can be loaded onto the carriage.
+          type: integer
+          minimum: 0
+          example: 36
+
+boxcar:
+  allOf:
+    - $ref: "#/carriage"
+    - title: boxcar
+      properties:
+        capacity:
+          title: capacity
+          description: The tonnage which can be loaded onto the carriage.
+          type: integer
+          minimum: 0
+          example: 5500

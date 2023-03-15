@@ -1,6 +1,0 @@
-properties:
-  trains:
-    title: trains
-    type: array
-    items:
-      $ref: "train.yml"

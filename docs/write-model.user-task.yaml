@@ -1,5 +1,8 @@
 actions:
   create:
-    name: Create train
+    name: Create trainset
     schema:
-      $ref: "data-dictionary/models/train.yml"
+      oneOf:
+        - $ref: "./data-dictionary/models/trainset.yml#/freight_trainset"
+        - $ref: "./data-dictionary/models/trainset.yml#/passenger_trainset"
+        - $ref: "./data-dictionary/models/trainset.yml#/work_trainset"

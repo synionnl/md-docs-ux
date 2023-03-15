@@ -1,0 +1,93 @@
+trainset_model:
+  required:
+    - object_type
+    - trainset_id
+    - name
+    - registration_date
+    - trainset
+  properties:
+    object_type:
+      title: object type
+      description: Object type is used the distinguish between different types of trainsets.
+      type: string
+    trainset_id:
+      type: integer
+      minimum: 0
+      description: A unique id identifing the trainset.
+      example: 4051
+    type:
+      required:
+        - type_id
+        - name
+      properties:
+        type_id:
+          type: string
+          format: uuid
+          description:  A unique id identifing the trainset type.
+          example: f3bb9b86-698e-46ad-9b0f-95a6b906dd57
+        name:
+          type: string
+          description: The name of the trainset type.
+          example: ICM-2
+    registration_date:
+      type: string
+      format: date
+      description: The registration date of the trainset.
+      example: "1981-01-05"
+      
+trainsets:
+  $ref: "#/trainset_model"
+
+trainset:
+  allOf:
+    - $ref: "#/trainset_model"
+    - properties:
+        engines:
+          title: engines
+          type: array
+          items:
+            title: engine
+            oneOf: 
+              - $ref: "engine.yml#/electric_engine"
+              - $ref: "engine.yml#/diesel_engine"
+              - $ref: "engine.yml#/hydrogen_engine"
+            discriminator:
+              propertyName: object_type
+        carriages:
+          title: carriages
+          type: array
+          items:
+            title: carriage
+            oneOf: 
+              - $ref: "carriage.yml#/passenger_carriage"
+              - $ref: "carriage.yml#/container_freight_carriage"
+              - $ref: "carriage.yml#/liquid_freight_carriage"
+              - $ref: "carriage.yml#/autorack_carriage"
+              - $ref: "carriage.yml#/boxcar"
+            discriminator:
+              propertyName: object_type
+
+freight_trainset:
+  allOf:
+    - $ref: "#/trainset"
+    - title: freight trainset
+      description: |
+        A freight trainset, cargo trainset, or goods trainset is a group of freight cars (US) or goods wagons (International Union of Railways) hauled by one or more locomotives on a railway, transporting cargo all or some of the way between the shipper and the intended destination as part of the logistics chain.
+     
+          
+passenger_trainset:
+  allOf:
+    - $ref: "#/trainset"
+    - title: passenger trainset
+      description: |
+        A passenger trainset is a trainset used to transport people along a railroad line. These trainsets may consist of unpowered passenger railroad cars (also known as coaches or carriages) hauled by one or more locomotives, or may be self-propelled; self propelled passenger trainsets are known as multiple units or railcars.
+    
+work_trainset:
+  allOf:
+    - $ref: "#/trainset"
+    - title: work trainset
+      description: |
+        A work trainset or departmental trainset (engineering trainset in the UK) is one or more rail cars intended for internal non-revenue use by the railroad's operator. Work trainsets serve functions such as track maintenance, maintenance of way, revenue collection, system cleanup and waste removal, heavy duty hauling, and crew member transport.
+
+
+

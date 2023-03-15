@@ -1,0 +1,9 @@
+in: path
+name: trainset_id
+description: A unique identifier for a trainset.
+required: true
+schema:
+  type: string
+  format: uuid
+  description: A unique identifier for a trainset.
+  example: 077015cc-5b84-494d-88b4-ee64773d4692

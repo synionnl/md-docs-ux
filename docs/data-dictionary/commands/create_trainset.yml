@@ -1,0 +1,4 @@
+allOf:
+  - title: create trainset command
+  - $ref: "base/command.yml"
+  - $ref: "../models/trainset.yml"
