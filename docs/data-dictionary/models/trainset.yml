@@ -35,9 +35,6 @@ trainset_model:
       description: The registration date of the trainset.
       example: "1981-01-05"
       
-trainsets:
-  $ref: "#/trainset_model"
-
 trainset:
   allOf:
     - $ref: "#/trainset_model"

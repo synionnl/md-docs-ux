@@ -1,0 +1,1 @@
+window.x_md_docs_cli_branches = [{"name":"main","repository":"synionnl/md-docs-ux","url":"https://github.com/synionnl/md-docs-ux/blob/main","mainBranch":true,"path":"main/"}];

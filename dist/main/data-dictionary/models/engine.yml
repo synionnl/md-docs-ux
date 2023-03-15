@@ -1,0 +1,62 @@
+engine:
+  required:
+    - object_type
+    - engine_id
+    - name
+    - horsepower
+    - type
+    - registration_date
+  properties:
+    object_type:
+      title: object type
+      description: Object type is used the distinguish between different types of engines.
+      type: string
+    engine_id:
+      type: integer
+      minimum: 0
+      description: A unique id identifing the engine.
+      example: 9865
+    horsepower:
+      type: integer
+      minimum: 0
+      description: The engines horsepower. 
+      example: 2500
+    type:
+      required:
+        - type_id
+        - manufacturer
+        - name
+      properties:
+        type_id:
+          type: string
+          format: uuid
+          description:  A unique id identifing the engine type.
+          example: f7269ba2-124d-4de7-9497-f6ef01515d88
+        manufacturer:
+          type: string
+          description: The name of the manufacturing company.
+          example: Bombardier TRAXX
+        name:
+          type: string
+          description: The name of the engine type.
+          example: F140 MS2
+    registration_date:
+      type: string
+      format: date
+      description: The registration date of the engine.
+      example: "1981-01-05"
+
+electric_engine:
+  allOf:
+    - $ref: "#/engine"
+    - title: electric engine
+
+diesel_engine:
+  allOf:
+    - $ref: "#/engine"
+    - title: diesel engine
+
+hydrogen_engine:
+  allOf:
+    - $ref: "#/engine"
+    - title: hydrogen engine

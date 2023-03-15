@@ -1,0 +1,10 @@
+properties:
+  command_id:
+    $ref: "command_id.yml"
+  correlation_id:
+    $ref: "correlation_id.yml"
+  causation_id:
+    $ref: "causation_id.yml"
+required:
+  - command_id
+  - correlation_id
