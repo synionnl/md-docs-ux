@@ -2,7 +2,6 @@ engine:
   required:
     - object_type
     - engine_id
-    - name
     - horsepower
     - type
     - registration_date

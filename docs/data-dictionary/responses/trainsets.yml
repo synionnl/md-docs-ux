@@ -4,4 +4,4 @@ allOf:
   - trainsets:
       type: array
       items:
-        $ref: "../models/trainsets.yml#/trainset_model"
+        $ref: "../models/trainsets.yml"

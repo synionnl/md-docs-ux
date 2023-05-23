@@ -2,9 +2,8 @@ trainset_model:
   required:
     - object_type
     - trainset_id
-    - name
+    - type
     - registration_date
-    - trainset
   properties:
     object_type:
       title: object type
@@ -35,9 +34,6 @@ trainset_model:
       description: The registration date of the trainset.
       example: "1981-01-05"
       
-trainsets:
-  $ref: "#/trainset_model"
-
 trainset:
   allOf:
     - $ref: "#/trainset_model"

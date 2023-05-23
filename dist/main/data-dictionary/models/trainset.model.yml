@@ -1,0 +1,6 @@
+oneOf:
+  - $ref: "../models/trainset.yml#/freight_trainset"
+  - $ref: "../models/trainset.yml#/passenger_trainset"
+  - $ref: "../models/trainset.yml#/work_trainset"
+discriminator:
+  propertyName: object_type

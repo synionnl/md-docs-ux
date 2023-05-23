@@ -4,4 +4,4 @@ properties:
     type: array
     items:
       properties:
-        $ref: "trainset.yml#/trainsets"
+        $ref: "trainset.yml#/trainset_model"

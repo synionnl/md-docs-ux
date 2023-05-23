@@ -1,5 +1,9 @@
 # UX design API documentation
 
+## The model
+
+[model](./data-dictionary/models/trainset.model.yml)
+
 ## Swagger documentation
 
 [api](./test.openapi.yml)

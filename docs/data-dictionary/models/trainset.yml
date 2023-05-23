@@ -2,9 +2,8 @@ trainset_model:
   required:
     - object_type
     - trainset_id
-    - name
+    - type
     - registration_date
-    - trainset
   properties:
     object_type:
       title: object type

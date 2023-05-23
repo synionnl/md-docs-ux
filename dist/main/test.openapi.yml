@@ -49,6 +49,50 @@ paths:
                 title: trainsets response
                 required:
                   - links
+                trainsets:
+                  type: array
+                  items:
+                    properties:
+                      trains:
+                        title: trainsets
+                        type: array
+                        items:
+                          properties:
+                            required:
+                              - object_type
+                              - trainset_id
+                              - type
+                              - registration_date
+                            properties:
+                              object_type:
+                                title: object type
+                                description: Object type is used the distinguish between different types of
+                                  trainsets.
+                                type: string
+                              trainset_id:
+                                type: integer
+                                minimum: 0
+                                description: A unique id identifing the trainset.
+                                example: 4051
+                              type:
+                                required:
+                                  - type_id
+                                  - name
+                                properties:
+                                  type_id:
+                                    type: string
+                                    format: uuid
+                                    description: A unique id identifing the trainset type.
+                                    example: f3bb9b86-698e-46ad-9b0f-95a6b906dd57
+                                  name:
+                                    type: string
+                                    description: The name of the trainset type.
+                                    example: ICM-2
+                              registration_date:
+                                type: string
+                                format: date
+                                description: The registration date of the trainset.
+                                example: 1981-01-05
                 properties:
                   messages:
                     type: array
@@ -81,42 +125,6 @@ paths:
                         format: uri
                         description: Link to the next offset.
                         example: https://service.domain.com/api/action?offset=f64910e7-1006-4c0c-b1fa-10033855770f&limit=100
-                  trains:
-                    title: trainsets
-                    type: array
-                    items:
-                      properties:
-                        required: {}
-                        properties:
-                          object_type:
-                            title: object type
-                            description: Object type is used the distinguish between different types of
-                              trainsets.
-                            type: string
-                          trainset_id:
-                            type: integer
-                            minimum: 0
-                            description: A unique id identifing the trainset.
-                            example: 4051
-                          type:
-                            required:
-                              - type_id
-                              - name
-                            properties:
-                              type_id:
-                                type: string
-                                format: uuid
-                                description: A unique id identifing the trainset type.
-                                example: f3bb9b86-698e-46ad-9b0f-95a6b906dd57
-                              name:
-                                type: string
-                                description: The name of the trainset type.
-                                example: ICM-2
-                          registration_date:
-                            type: string
-                            format: date
-                            description: The registration date of the trainset.
-                            example: 1981-01-05
         "401":
           description: Not authenticated
           content:
@@ -201,46 +209,8 @@ paths:
                 required:
                   - object_type
                   - trainset_id
-                  - name
+                  - type
                   - registration_date
-                  - trainset
-                properties:
-                  object_type:
-                    title: object type
-                    description: Object type is used the distinguish between different types of
-                      trainsets.
-                    type: string
-                  trainset_id:
-                    type: integer
-                    minimum: 0
-                    description: A unique id identifing the trainset.
-                    example: 4051
-                  type:
-                    required:
-                      - type_id
-                      - name
-                    properties:
-                      type_id:
-                        type: string
-                        format: uuid
-                        description: A unique id identifing the trainset type.
-                        example: f3bb9b86-698e-46ad-9b0f-95a6b906dd57
-                      name:
-                        type: string
-                        description: The name of the trainset type.
-                        example: ICM-2
-                  registration_date:
-                    type: string
-                    format: date
-                    description: The registration date of the trainset.
-                    example: 1981-01-05
-              trainsets:
-                required:
-                  - object_type
-                  - trainset_id
-                  - name
-                  - registration_date
-                  - trainset
                 properties:
                   object_type:
                     title: object type
@@ -275,9 +245,8 @@ paths:
                 required:
                   - object_type
                   - trainset_id
-                  - name
+                  - type
                   - registration_date
-                  - trainset
                 properties:
                   object_type:
                     title: object type
@@ -317,7 +286,6 @@ paths:
                         - required:
                             - object_type
                             - engine_id
-                            - name
                             - horsepower
                             - type
                             - registration_date
@@ -365,7 +333,6 @@ paths:
                         - required:
                             - object_type
                             - engine_id
-                            - name
                             - horsepower
                             - type
                             - registration_date
@@ -413,7 +380,6 @@ paths:
                         - required:
                             - object_type
                             - engine_id
-                            - name
                             - horsepower
                             - type
                             - registration_date
@@ -469,7 +435,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: passenger carriage
@@ -530,7 +495,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: container freight carriage
@@ -578,7 +542,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: liquid freight carriage
@@ -626,7 +589,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: autorack carriage
@@ -674,7 +636,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: boxcar
@@ -725,16 +686,16 @@ paths:
                 required:
                   - object_type
                   - trainset_id
-                  - name
+                  - type
                   - registration_date
-                  - trainset
                 title: freight trainset
                 description: >+
-                  A freight trainset, cargo trainset, or goods trainset is a group of
-                  freight cars (US) or goods wagons (International Union of
-                  Railways) hauled by one or more locomotives on a railway,
-                  transporting cargo all or some of the way between the shipper
-                  and the intended destination as part of the logistics chain.
+                  A freight trainset, cargo trainset, or goods trainset is a
+                  group of freight cars (US) or goods wagons (International
+                  Union of Railways) hauled by one or more locomotives on a
+                  railway, transporting cargo all or some of the way between the
+                  shipper and the intended destination as part of the logistics
+                  chain.
 
                     
                 properties:
@@ -776,7 +737,6 @@ paths:
                         - required:
                             - object_type
                             - engine_id
-                            - name
                             - horsepower
                             - type
                             - registration_date
@@ -824,7 +784,6 @@ paths:
                         - required:
                             - object_type
                             - engine_id
-                            - name
                             - horsepower
                             - type
                             - registration_date
@@ -872,7 +831,6 @@ paths:
                         - required:
                             - object_type
                             - engine_id
-                            - name
                             - horsepower
                             - type
                             - registration_date
@@ -928,7 +886,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: passenger carriage
@@ -989,7 +946,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: container freight carriage
@@ -1037,7 +993,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: liquid freight carriage
@@ -1085,7 +1040,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: autorack carriage
@@ -1133,7 +1087,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: boxcar
@@ -1184,17 +1137,16 @@ paths:
                 required:
                   - object_type
                   - trainset_id
-                  - name
+                  - type
                   - registration_date
-                  - trainset
                 title: passenger trainset
                 description: >
-                  A passenger trainset is a trainset used to transport people along a
-                  railroad line. These trainsets may consist of unpowered
-                  passenger railroad cars (also known as coaches or carriages)
-                  hauled by one or more locomotives, or may be self-propelled;
-                  self propelled passenger trainsets are known as multiple units
-                  or railcars.
+                  A passenger trainset is a trainset used to transport people
+                  along a railroad line. These trainsets may consist of
+                  unpowered passenger railroad cars (also known as coaches or
+                  carriages) hauled by one or more locomotives, or may be
+                  self-propelled; self propelled passenger trainsets are known
+                  as multiple units or railcars.
                 properties:
                   object_type:
                     title: object type
@@ -1234,7 +1186,6 @@ paths:
                         - required:
                             - object_type
                             - engine_id
-                            - name
                             - horsepower
                             - type
                             - registration_date
@@ -1282,7 +1233,6 @@ paths:
                         - required:
                             - object_type
                             - engine_id
-                            - name
                             - horsepower
                             - type
                             - registration_date
@@ -1330,7 +1280,6 @@ paths:
                         - required:
                             - object_type
                             - engine_id
-                            - name
                             - horsepower
                             - type
                             - registration_date
@@ -1386,7 +1335,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: passenger carriage
@@ -1447,7 +1395,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: container freight carriage
@@ -1495,7 +1442,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: liquid freight carriage
@@ -1543,7 +1489,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: autorack carriage
@@ -1591,7 +1536,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: boxcar
@@ -1642,13 +1586,12 @@ paths:
                 required:
                   - object_type
                   - trainset_id
-                  - name
+                  - type
                   - registration_date
-                  - trainset
                 title: work trainset
                 description: >
-                  A work trainset or departmental trainset (engineering trainset in
-                  the UK) is one or more rail cars intended for internal
+                  A work trainset or departmental trainset (engineering trainset
+                  in the UK) is one or more rail cars intended for internal
                   non-revenue use by the railroad's operator. Work trainsets
                   serve functions such as track maintenance, maintenance of way,
                   revenue collection, system cleanup and waste removal, heavy
@@ -1692,7 +1635,6 @@ paths:
                         - required:
                             - object_type
                             - engine_id
-                            - name
                             - horsepower
                             - type
                             - registration_date
@@ -1740,7 +1682,6 @@ paths:
                         - required:
                             - object_type
                             - engine_id
-                            - name
                             - horsepower
                             - type
                             - registration_date
@@ -1788,7 +1729,6 @@ paths:
                         - required:
                             - object_type
                             - engine_id
-                            - name
                             - horsepower
                             - type
                             - registration_date
@@ -1844,7 +1784,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: passenger carriage
@@ -1905,7 +1844,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: container freight carriage
@@ -1953,7 +1891,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: liquid freight carriage
@@ -2001,7 +1938,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: autorack carriage
@@ -2049,7 +1985,6 @@ paths:
                         - required:
                             - object_type
                             - carriage_id
-                            - name
                             - type
                             - registration_date
                           title: boxcar
@@ -2211,17 +2146,16 @@ paths:
                       - required:
                           - object_type
                           - trainset_id
-                          - name
+                          - type
                           - registration_date
-                          - trainset
                         title: freight trainset
                         description: >+
-                          A freight trainset, cargo trainset, or goods trainset is a group of
-                          freight cars (US) or goods wagons (International Union
-                          of Railways) hauled by one or more locomotives on a
-                          railway, transporting cargo all or some of the way
-                          between the shipper and the intended destination as
-                          part of the logistics chain.
+                          A freight trainset, cargo trainset, or goods trainset
+                          is a group of freight cars (US) or goods wagons
+                          (International Union of Railways) hauled by one or
+                          more locomotives on a railway, transporting cargo all
+                          or some of the way between the shipper and the
+                          intended destination as part of the logistics chain.
 
                             
                         properties:
@@ -2263,7 +2197,6 @@ paths:
                                 - required:
                                     - object_type
                                     - engine_id
-                                    - name
                                     - horsepower
                                     - type
                                     - registration_date
@@ -2311,7 +2244,6 @@ paths:
                                 - required:
                                     - object_type
                                     - engine_id
-                                    - name
                                     - horsepower
                                     - type
                                     - registration_date
@@ -2359,7 +2291,6 @@ paths:
                                 - required:
                                     - object_type
                                     - engine_id
-                                    - name
                                     - horsepower
                                     - type
                                     - registration_date
@@ -2415,7 +2346,6 @@ paths:
                                 - required:
                                     - object_type
                                     - carriage_id
-                                    - name
                                     - type
                                     - registration_date
                                   title: passenger carriage
@@ -2478,7 +2408,6 @@ paths:
                                 - required:
                                     - object_type
                                     - carriage_id
-                                    - name
                                     - type
                                     - registration_date
                                   title: container freight carriage
@@ -2526,7 +2455,6 @@ paths:
                                 - required:
                                     - object_type
                                     - carriage_id
-                                    - name
                                     - type
                                     - registration_date
                                   title: liquid freight carriage
@@ -2574,7 +2502,6 @@ paths:
                                 - required:
                                     - object_type
                                     - carriage_id
-                                    - name
                                     - type
                                     - registration_date
                                   title: autorack carriage
@@ -2622,7 +2549,6 @@ paths:
                                 - required:
                                     - object_type
                                     - carriage_id
-                                    - name
                                     - type
                                     - registration_date
                                   title: boxcar
@@ -2672,15 +2598,14 @@ paths:
                       - required:
                           - object_type
                           - trainset_id
-                          - name
+                          - type
                           - registration_date
-                          - trainset
                         title: passenger trainset
                         description: >
-                          A passenger trainset is a trainset used to transport people along a
-                          railroad line. These trainsets may consist of
-                          unpowered passenger railroad cars (also known as
-                          coaches or carriages) hauled by one or more
+                          A passenger trainset is a trainset used to transport
+                          people along a railroad line. These trainsets may
+                          consist of unpowered passenger railroad cars (also
+                          known as coaches or carriages) hauled by one or more
                           locomotives, or may be self-propelled; self propelled
                           passenger trainsets are known as multiple units or
                           railcars.
@@ -2723,7 +2648,6 @@ paths:
                                 - required:
                                     - object_type
                                     - engine_id
-                                    - name
                                     - horsepower
                                     - type
                                     - registration_date
@@ -2771,7 +2695,6 @@ paths:
                                 - required:
                                     - object_type
                                     - engine_id
-                                    - name
                                     - horsepower
                                     - type
                                     - registration_date
@@ -2819,7 +2742,6 @@ paths:
                                 - required:
                                     - object_type
                                     - engine_id
-                                    - name
                                     - horsepower
                                     - type
                                     - registration_date
@@ -2875,7 +2797,6 @@ paths:
                                 - required:
                                     - object_type
                                     - carriage_id
-                                    - name
                                     - type
                                     - registration_date
                                   title: passenger carriage
@@ -2938,7 +2859,6 @@ paths:
                                 - required:
                                     - object_type
                                     - carriage_id
-                                    - name
                                     - type
                                     - registration_date
                                   title: container freight carriage
@@ -2986,7 +2906,6 @@ paths:
                                 - required:
                                     - object_type
                                     - carriage_id
-                                    - name
                                     - type
                                     - registration_date
                                   title: liquid freight carriage
@@ -3034,7 +2953,6 @@ paths:
                                 - required:
                                     - object_type
                                     - carriage_id
-                                    - name
                                     - type
                                     - registration_date
                                   title: autorack carriage
@@ -3082,7 +3000,6 @@ paths:
                                 - required:
                                     - object_type
                                     - carriage_id
-                                    - name
                                     - type
                                     - registration_date
                                   title: boxcar
@@ -3132,18 +3049,17 @@ paths:
                       - required:
                           - object_type
                           - trainset_id
-                          - name
+                          - type
                           - registration_date
-                          - trainset
                         title: work trainset
                         description: >
-                          A work trainset or departmental trainset (engineering trainset in
-                          the UK) is one or more rail cars intended for internal
-                          non-revenue use by the railroad's operator. Work
-                          trainsets serve functions such as track maintenance,
-                          maintenance of way, revenue collection, system cleanup
-                          and waste removal, heavy duty hauling, and crew member
-                          transport.
+                          A work trainset or departmental trainset (engineering
+                          trainset in the UK) is one or more rail cars intended
+                          for internal non-revenue use by the railroad's
+                          operator. Work trainsets serve functions such as track
+                          maintenance, maintenance of way, revenue collection,
+                          system cleanup and waste removal, heavy duty hauling,
+                          and crew member transport.
                         properties:
                           object_type:
                             title: object type
@@ -3183,7 +3099,6 @@ paths:
                                 - required:
                                     - object_type
                                     - engine_id
-                                    - name
                                     - horsepower
                                     - type
                                     - registration_date
@@ -3231,7 +3146,6 @@ paths:
                                 - required:
                                     - object_type
                                     - engine_id
-                                    - name
                                     - horsepower
                                     - type
                                     - registration_date
@@ -3279,7 +3193,6 @@ paths:
                                 - required:
                                     - object_type
                                     - engine_id
-                                    - name
                                     - horsepower
                                     - type
                                     - registration_date
@@ -3335,7 +3248,6 @@ paths:
                                 - required:
                                     - object_type
                                     - carriage_id
-                                    - name
                                     - type
                                     - registration_date
                                   title: passenger carriage
@@ -3398,7 +3310,6 @@ paths:
                                 - required:
                                     - object_type
                                     - carriage_id
-                                    - name
                                     - type
                                     - registration_date
                                   title: container freight carriage
@@ -3446,7 +3357,6 @@ paths:
                                 - required:
                                     - object_type
                                     - carriage_id
-                                    - name
                                     - type
                                     - registration_date
                                   title: liquid freight carriage
@@ -3494,7 +3404,6 @@ paths:
                                 - required:
                                     - object_type
                                     - carriage_id
-                                    - name
                                     - type
                                     - registration_date
                                   title: autorack carriage
@@ -3542,7 +3451,6 @@ paths:
                                 - required:
                                     - object_type
                                     - carriage_id
-                                    - name
                                     - type
                                     - registration_date
                                   title: boxcar
