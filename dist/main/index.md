@@ -2,7 +2,7 @@
 
 ## The model
 
-[model](./data-dictionary/models/trainset.model.yml)
+[model](./data-dictionary/models/trainset.yml#/trainset)
 
 ## Swagger documentation
 

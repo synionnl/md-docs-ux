@@ -1,0 +1,3 @@
+class FreightTrainset extends ComplexTrainset {
+    
+}

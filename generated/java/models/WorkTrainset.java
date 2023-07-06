@@ -1,0 +1,3 @@
+class PassengerTrainset extends ComplexTrainset {
+    
+}

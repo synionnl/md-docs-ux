@@ -1,7 +1,4 @@
 allOf:
-  - title: trainsets response
   - $ref: "base/offset_response.yml"
-  - trainsets:
-      type: array
-      items:
-        $ref: "../models/trainsets.yml"
+  - $ref: "../models/trainsets.yml"
+  - title: trainsets response

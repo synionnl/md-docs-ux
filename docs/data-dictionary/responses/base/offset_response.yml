@@ -1,8 +1,7 @@
 allOf:
-  - $ref: "response.yml"
+  - $ref: "./response.yml"
   - properties:
       links:
-        type: object
         properties:
           next: 
             type: string

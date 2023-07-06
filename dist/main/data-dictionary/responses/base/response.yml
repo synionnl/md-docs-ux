@@ -1,5 +1,6 @@
 properties:
   messages:
     type: array
+    title: response messages
     items:
-      $ref: "message.yml"
+      $ref: "./message.yml"

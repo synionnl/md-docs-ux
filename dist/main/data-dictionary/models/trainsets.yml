@@ -1,7 +1,6 @@
 properties:
-  trains:
+  trainsets:
     title: trainsets
     type: array
     items:
-      properties:
-        $ref: "trainset.yml#/trainset_model"
+      $ref: "trainset.yml#/simple_trainset"

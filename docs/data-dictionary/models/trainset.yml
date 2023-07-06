@@ -1,4 +1,5 @@
-trainset_model:
+simple_trainset:
+  title: simple trainset
   required:
     - object_type
     - trainset_id
@@ -34,9 +35,10 @@ trainset_model:
       description: The registration date of the trainset.
       example: "1981-01-05"
       
-trainset:
+complex_trainset:
   allOf:
-    - $ref: "#/trainset_model"
+    - title: abstract trainset
+    - $ref: "#/simple_trainset"
     - properties:
         engines:
           title: engines
@@ -65,25 +67,30 @@ trainset:
 
 freight_trainset:
   allOf:
-    - $ref: "#/trainset"
     - title: freight trainset
       description: |
         A freight trainset, cargo trainset, or goods trainset is a group of freight cars (US) or goods wagons (International Union of Railways) hauled by one or more locomotives on a railway, transporting cargo all or some of the way between the shipper and the intended destination as part of the logistics chain.
-     
+    - $ref: "#/complex_trainset"
           
 passenger_trainset:
   allOf:
-    - $ref: "#/trainset"
     - title: passenger trainset
       description: |
         A passenger trainset is a trainset used to transport people along a railroad line. These trainsets may consist of unpowered passenger railroad cars (also known as coaches or carriages) hauled by one or more locomotives, or may be self-propelled; self propelled passenger trainsets are known as multiple units or railcars.
+    - $ref: "#/complex_trainset"
     
 work_trainset:
   allOf:
-    - $ref: "#/trainset"
     - title: work trainset
       description: |
         A work trainset or departmental trainset (engineering trainset in the UK) is one or more rail cars intended for internal non-revenue use by the railroad's operator. Work trainsets serve functions such as track maintenance, maintenance of way, revenue collection, system cleanup and waste removal, heavy duty hauling, and crew member transport.
+    - $ref: "#/complex_trainset"
 
-
-
+trainset:
+  title: trainset
+  oneOf:
+    - $ref: "../models/trainset.yml#/freight_trainset"
+    - $ref: "../models/trainset.yml#/passenger_trainset"
+    - $ref: "../models/trainset.yml#/work_trainset"
+  discriminator:
+    propertyName: object_type

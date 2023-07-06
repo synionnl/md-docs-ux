@@ -1,0 +1,8 @@
+parameters:
+  required:
+    - trainset_id
+  properties:
+    trainset_id:
+      $ref: "./data-dictionary/types/trainset_id.yml"
+response:
+  $ref: "./data-dictionary/responses/trainset.yml"

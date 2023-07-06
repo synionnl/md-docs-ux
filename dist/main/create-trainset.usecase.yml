@@ -1,0 +1,2 @@
+body:
+  $ref: "./data-dictionary/commands/create_trainset.yml"

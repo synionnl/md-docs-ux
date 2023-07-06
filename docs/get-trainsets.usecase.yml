@@ -1,0 +1,8 @@
+parameters:
+  properties:
+    limit:
+      $ref: "./data-dictionary/parameters/query/limit.yml#/schema"
+    offset:
+      $ref: "./data-dictionary/parameters/query/offset.yml#/schema"
+response:
+  $ref: "./data-dictionary/responses/trainsets.yml"
